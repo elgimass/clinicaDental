@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\Tratamiento;
 use App\Models\Paciente;
+use App\Models\Historial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +16,29 @@ class CitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos_paciente['pacientes'] = Paciente::all();
-        $datos['citas']=cita::paginate(10);
-        return view('cita.index',$datos,$datos_paciente);
+        $datos_paciente = Paciente::all();
+        $datos_tratamiento = Tratamiento::all();
+
+        $texto = trim($request->get('texto'));
+        $citas = DB::table('citas')
+            ->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+              ->select('citas.*','pacientes.nombre')
+              ->where('citas.fecha','LIKE','%'.$texto.'%')
+              ->orWhere('citas.id','LIKE','%'.$texto.'%')
+              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+              ->orderBy('fecha','desc')
+              ->paginate(7);
+
+
+
+
+        return view('cita.index',compact('citas','texto'),[
+            'pacientes'  => $datos_paciente,
+            'tratamientos' => $datos_tratamiento
+         ]);
+
     }
 
     /**
@@ -28,8 +48,12 @@ class CitaController extends Controller
      */
     public function create()
     {
-        $datos_paciente['pacientes'] = Paciente::all();
-        return view('cita.create',$datos_paciente);
+        $datos_paciente = Paciente::all();
+        $datos_tratamiento = Tratamiento::all();
+        return view('Cita.create',[
+            'pacientes'  => $datos_paciente,
+            'tratamientos' => $datos_tratamiento
+         ]);
     }
 
     /**
@@ -43,6 +67,16 @@ class CitaController extends Controller
 
         $datoscita = request()->except('_token');
         Cita::insert($datoscita);
+
+
+        $datoshistorial = request()->except('hora','formaPago','_token');
+
+
+        Historial::insert($datoshistorial);
+
+
+
+
         return redirect('cita');
 
     }
@@ -66,9 +100,34 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
-        $datos_paciente['pacientes'] = Paciente::all();
-        $cita=Cita::findOrFail($id);
-        return view('cita.edit',compact('cita'),$datos_paciente);
+
+       // $datoscita=Cita::findOrFail($id);
+       // $datos_paciente = Paciente::all();
+        $datos_tratamiento = Tratamiento::all();
+        //dd($id);
+        // $datos_paciente = DB::table('pacientes')
+        //     ->select('nombre')
+        //     ->where('id', '=', $datoscita['paciente_id'])
+        //     ->get();
+
+        // $datos_tratamiento = DB::table('tratamientos')
+        //     ->select('nombre')
+        //     ->where('id', '=', $datoscita['tratamiento_id'])
+        //     ->get();
+        $citas = DB::table('citas')
+        ->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
+        ->join('tratamientos','citas.tratamiento_id','=','tratamientos.id')
+          ->select('citas.*','pacientes.nombre as paciente','tratamientos.nombre as tratamiento')
+          ->where('citas.id','=',$id)
+          ->get();
+
+
+
+
+     return view('cita.edit',compact('citas'),[
+        'tratamientos' => $datos_tratamiento
+     ]);
+
     }
 
     /**
@@ -82,6 +141,11 @@ class CitaController extends Controller
     {
         $datoscita = request()->except(['_token','_method']);
         Cita::where('id','=',$id)->update($datoscita);
+        //$datoshistorial = request()->except(['hora','formaPago','_token','_method']);
+        //Historial::where('id','=',$id)->update($datoshistorial);
+
+       
+
 
         return redirect('cita');
     }

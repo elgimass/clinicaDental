@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Historial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -12,10 +14,17 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['pacientes']=Paciente::paginate(5);
-        return view('paciente.index',$datos);
+        $texto = trim($request->get('texto'));
+        $pacientes = DB::table('pacientes')
+              ->select('id','nombre','edad','direccion','telefono','ocupacion','referido')
+              ->where('nombre','LIKE','%'.$texto.'%')
+              ->orWhere('id','LIKE','%'.$texto.'%')
+              ->orderBy('nombre','desc')
+              ->paginate(7);
+
+        return view('paciente.index',compact('pacientes','texto'));
     }
 
     /**
@@ -52,6 +61,7 @@ class PacienteController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.

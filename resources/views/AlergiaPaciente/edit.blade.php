@@ -3,15 +3,14 @@
 @section('title', 'Clinica Dental')
 
 @section('content_header')
-    <h1>Editar Cita</h1>
+    <h1>Editar Enfermedad</h1>
 @stop
 
 @section('content')
-
-<form action="{{url ('/cita/'.$citas[0]->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{url ('/alergias/'.$datosalergia->id) }}" method="post" enctype="multipart/form-data">
 @csrf
 {{method_field('PATCH')}}
-@include('cita.editarform')
+@include('AlergiaPaciente.form')
 
 
     </form>

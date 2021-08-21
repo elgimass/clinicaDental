@@ -225,35 +225,21 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
 
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+
+
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'DashBoard',
+            'url'         => 'dashboard',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'TAREAS'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -265,25 +251,41 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'registros',
+            'text'    => 'Registros',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'pacientes',
+                    'text' => 'Pacientes',
                     'url'  => 'paciente ',
                     'topnav' =>true,
                 ],
 
                     [
-                        'text' => 'citas',
+                        'text' => 'Citas',
                         'url'  => 'cita',
+                        'topnav' =>true,
+                    ],
+                    [
+                        'text' => 'Historiales Pacientes',
+                        'url'  => 'historial',
+                        'topnav' =>true,
+                    ],
+
+                    [
+                        'text' => 'Alergias de pacientes',
+                        'url'  => 'alergia',
+                        'topnav' =>true,
+                    ],
+                    [
+                        'text' => 'Satisfacción de los Pacientes',
+                        'url'  => 'satisfaccion',
                         'topnav' =>true,
                     ],
 
             ],
         ],
-        ['header' => 'labels'],
-        [
+        ['header' => 'Ayuda'],
+        /*[
             'text'       => 'important',
             'icon_color' => 'red',
             'url'        => '#',
@@ -292,7 +294,7 @@ return [
             'text'       => 'warning',
             'icon_color' => 'yellow',
             'url'        => '#',
-        ],
+        ],*/
         [
             'text'       => 'information',
             'icon_color' => 'cyan',

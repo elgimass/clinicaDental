@@ -1,87 +1,62 @@
-@extends('adminlte::page')
+
+  @extends('adminlte::page')
 
 @section('title', 'Clinica Dental')
 
 @section('content_header')
-    <h1>Citas de la Clinica</h1>
+    <h1>Lista de Cuentas</h1>
 @stop
 
 @section('content')
-<a href="{{ url('cita/create') }}" class="btn btn-success"> Registrar cita</a>
-<br>
-<br>
-<div class ="row float-end">
-<div class = "col-sm-12">
-<form action = "{{route('cita.index')}}" method="get">
-                     <div class="form-row">
-                     <div class="col-sm-8 my-1">
-    <input type="text" class="form-control" name="texto" value ="{{$texto}}">
-    </div>
-    <div class="col-auto my-1">
-      <input type= "submit" class="btn btn-primary" value="Buscar">
+<a href="{{ url('cuenta/create') }}" class="btn btn-success"> Registrar cobro</a>
 
-  </div>
-</div>
-</div>
-                     </form>
-
-                     </div>
-
-<table class="table table-borderless table-hover">
-    <thead class="thead-dark">
+<table class="table">
+    <thead class="thead-light">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
       <tr>
         <th scope="col">Código</th>
         <th scope="col">Paciente</th>
-        <th scope="col">Tratamiento</th>
-        <th scope="col">Forma de pago</th>
-        <th scope="col">Pieza</th>
         <th scope="col">Fecha</th>
-        <th scope="col">Hora</th>
+        <th scope="col">Pieza</th>
+        <th scope="col">Tratamiento</th>
+        <th scope="col">Cargos</th>
+        <th scope="col">Abonos</th>
+        <th scope="col">Saldo</th>
         <th scope="col">Acciones</th>
 
       </tr>
     </thead>
     <tbody>
-        @foreach ( $citas as $cita )
+    @foreach ( $cuentas as $cuenta )
             <tr>
-                <th>{{$cita->id}}</th>
+                <th>{{$cuenta->id}}</th>
 
 
           @foreach ($pacientes as $paciente  )
-            @if ($cita->paciente_id == $paciente->id)
+            @if ($cuenta->paciente_id == $paciente->id)
                  <th>{{$paciente->nombre}}</th>
              @endif
           @endforeach
 
-          @foreach ($tratamientos as $tratamiento  )
-            @if ($cita->tratamiento_id == $tratamiento->id)
-                 <th>{{$tratamiento->nombre}}</th>
-             @endif
-          @endforeach
 
-
-                <th>{{$cita->formaPago}}</th>
-                <th>{{$cita->pieza}}</th>
-
-
-
-
-                <th>{{$cita->fecha}}</th>
-                <th>{{$cita->hora}}</th>
+                <th>{{$cuenta->fecha}}</th>
+                <th>{{$cuenta->pieza}}</th>
+                <th>{{$cuenta->tratamiento}}</th>
+                <th>{{$cuenta->cargos}}</th>
+                <th>{{$cuenta->abonos}}</th>
+                <th>{{$cuenta->saldos}}</th>
                 <th>
 
 
 
-                <form action="{{ url('/cita/'.$cita->id) }}" method="post">
+
+                <form action="{{ url('/cuenta/'.$cuenta->id) }}" method="post">
                     @csrf
                     {{method_field('DELETE')}}
                     <input type="submit" class="btn btn-danger" onclick ="return confirm('¿Estas seguro de que quieres borrar?')"value="Borrar">
-
-                    <a href="{{ url('/cita/'.$cita->id.'/edit') }}"  class="btn btn-primary">
+                    <a href="{{ url('/cuenta/'.$cuenta->id.'/edit') }}"  class="btn btn-primary">
                     Editar
                 </a>
-
                 </form>
 
 

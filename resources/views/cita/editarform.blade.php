@@ -5,24 +5,29 @@
   <div class="card-body">
 
     <div class ="form-group">
-        <label for="paciente_id"> Seleccion Paciente </label>
-        <div class="input-group">
-        <select class="input-group"  name="paciente_id"    id="paciente_id">
-        @foreach ($pacientes as $paciente)
+    <label for="tratamiento_id"> Seleccion Paciente </label>
+            <div class="input-group">
+            <select class="input-group"   name="paciente_id"    id="paciente_id">
 
-        <option value="{{isset($paciente["id"])?$paciente["id"]:''}}">{{ $paciente->nombre}}</option>
-        @endforeach)
-</select>
-        </div>
-        <br>
-        <div class="input-group">
-        <label for="tratamiento_id"> Seleccion Tratamiento </label>
-        <select class="input-group" name="tratamiento_id"    id="tratamiento_id">
-    @foreach ($tratamientos as $tratamiento  )
-        <option value="{{isset($tratamiento["id"])?$tratamiento["id"]:''}}">{{ $tratamiento->nombre}}</option>
-    @endforeach)
-</select>
-        </div>
+
+            <option value="{{$citas[0]->paciente_id}}">{{ $citas[0]->paciente}}</option>
+
+    </select>
+            </div>
+            <br>
+            <div class="input-group">
+             <label for="tratamiento_id"> Seleccion Tratamiento </label>
+            <select class="input-group" name="tratamiento_id"    id="tratamiento_id">
+
+            <option value="{{$citas[0]->tratamiento_id}}">{{ $citas[0]->tratamiento}}</option>
+            @foreach ($tratamientos as $tratamiento)
+            <option value="{{$tratamiento["id"]}}">{{ $tratamiento->nombre}}</option>
+
+
+            @endforeach
+
+    </select>
+            </div>
             <br>
             <div class="input-group">
             <input class="input-group" type="text" name="formaPago" value="{{isset ($citas[0]->formaPago)?$citas[0]->formaPago:''}}" id="formaPago" placeholder="Ingresar Forma de Pago">

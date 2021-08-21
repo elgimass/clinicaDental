@@ -3,18 +3,16 @@
 @section('title', 'Clinica Dental')
 
 @section('content_header')
-    <h1>Editar Cita</h1>
+    <h1>Registrar alergia paciente</h1>
 @stop
 
 @section('content')
 
-<form action="{{url ('/cita/'.$citas[0]->id) }}" method="post" enctype="multipart/form-data">
-@csrf
-{{method_field('PATCH')}}
-@include('cita.editarform')
+<form action="{{url ('/alergia') }}" method="post" enctype="multipart/form-data">
+@include('AlergiaPaciente.form')
 
 
-    </form>
+</form>
 
 @stop
 
@@ -25,3 +23,4 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
+

@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\AlergiaPacienteController;
+use App\Http\Controllers\Dashboardcontroller;
+use App\Http\Controllers\Historialcontroller;
+use App\Http\Controllers\Satisfaccioncontroller;
+
 
 
 
@@ -20,18 +26,25 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
 
 
-Route::resource('paciente',PacienteController::class);
-Route::resource('cita',CitaController::class);
+Route::resource('paciente',PacienteController::class)->middleware('auth');
+Route::resource('cita',CitaController::class)->middleware('auth');
+Route::resource('cuenta',CuentaController::class)->middleware('auth');
+Route::resource('alergia',AlergiaPacienteController::class)->middleware('auth');
+Route::resource('dashboard',DashboardController::class)->middleware('auth');
+Route::resource('historial',HistorialController::class)->middleware('auth');
+Route::resource('satisfaccion',SatisfaccionController::class)->middleware('auth');
+Route::get('historial/{id}',  [HistorialController::class, 'historial'])->middleware('auth');
+
 Auth::routes();
 
 
-Route::get('home',[HomeController::class, 'index']);
+Route::get('home',[HomeController::class, 'index'])->middleware('auth');
 
 
 
