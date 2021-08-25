@@ -20,12 +20,12 @@ class CreateSatisfaccionsTable extends Migration
              $table->integer('servicio');
              $table->integer('recomendacion');
              $table->timestamps();
- 
+
              $table->foreign('paciente_id')
              ->references('id')->on('pacientes')
              ->onDelete('cascade');
- 
-         
+
+
         });
     }
 

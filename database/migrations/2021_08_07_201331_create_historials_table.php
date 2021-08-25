@@ -15,8 +15,8 @@ class CreateHistorialsTable extends Migration
     {
         Schema::create('historials', function (Blueprint $table) {
             $table->increments('id');
-           $table->unsignedInteger('paciente_id');
-           $table->unsignedInteger('tratamiento_id');
+            $table->unsignedInteger('paciente_id');
+          //$table->unsignedInteger('tratamiento_id');
             $table->string('pieza');
             $table->date('fecha');
             $table->string('estado');
@@ -27,9 +27,9 @@ class CreateHistorialsTable extends Migration
             ->references('id')->on('pacientes')
             ->onDelete('cascade');
 
-           $table->foreign('tratamiento_id')
-           ->references('id')->on('tratamientos')
-           ->onDelete('cascade');
+           //$table->foreign('tratamiento_id')
+           //->references('id')->on('tratamienstos')
+           //->onDelete('cascade');
         });
     }
 

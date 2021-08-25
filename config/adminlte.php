@@ -284,6 +284,17 @@ return [
 
             ],
         ],
+        [
+            'text'    => 'Saldos de pacientes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Cobros',
+                    'url'  => '# ',
+                    'topnav' =>true,
+                ],
+            ],
+        ],
         ['header' => 'Ayuda'],
         /*[
             'text'       => 'important',

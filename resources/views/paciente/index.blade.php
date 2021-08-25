@@ -58,10 +58,10 @@
 
 
 
-                <form action="{{ url('/paciente/'.$paciente->id) }}"  method="post">
+
                     @csrf
-                    {{method_field('DELETE')}}
-                    <input type="submit" class="btn btn-danger" onclick ="return confirm('¿Estas seguro de que quieres borrar?')"value="Borrar">
+
+
 
                     <a href="{{ url('/paciente/'.$paciente->id.'/edit') }}" class="btn btn-primary">
                     Editar
@@ -72,7 +72,7 @@
 
 
 
-                </form>
+
 
 
                 </th>
