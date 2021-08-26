@@ -21,7 +21,6 @@ class CreateCuentasTable extends Migration
             $table->string('tratamiento');
             $table->integer('cargos');
             $table->integer('abonos');
-            $table->integer('saldos');
             $table->timestamps();
 
             $table->foreign('paciente_id')

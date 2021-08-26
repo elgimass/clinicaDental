@@ -144,7 +144,7 @@ class CitaController extends Controller
         //$datoshistorial = request()->except(['hora','formaPago','_token','_method']);
         //Historial::where('id','=',$id)->update($datoshistorial);
 
-       
+
 
 
         return redirect('cita');

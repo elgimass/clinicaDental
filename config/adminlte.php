@@ -289,8 +289,8 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Cobros',
-                    'url'  => '# ',
+                    'text' => 'Cobros y Cargos',
+                    'url'  => 'cuenta ',
                     'topnav' =>true,
                 ],
             ],

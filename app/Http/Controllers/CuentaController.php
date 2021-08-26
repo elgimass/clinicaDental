@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use App\Models\Paciente;
+use App\Models\Tratamiento;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CuentaController extends Controller
@@ -13,11 +15,26 @@ class CuentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos_paciente['pacientes'] = Paciente::all();
-        $datos['cuentas']=cuenta::paginate(10);
-        return view('cuenta.index',$datos,$datos_paciente);
+        $datos_tratamiento = Tratamiento::all();
+        $datos_paciente = Paciente::all();
+        $texto = trim($request->get('texto'));
+        $cuentas = DB::table('cuentas')
+            ->join('pacientes', 'cuentas.paciente_id', '=', 'pacientes.id')
+              ->select('cuentas.*','pacientes.nombre')
+              ->where('cuentas.fecha','LIKE','%'.$texto.'%')
+              ->orWhere('cuentas.id','LIKE','%'.$texto.'%')
+              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+              ->orderBy('fecha','desc')
+              ->paginate(7);
+
+
+
+        return view('cuenta.index',compact('cuentas','texto'),[
+            'pacientes'  => $datos_paciente,
+            'tratamientos' => $datos_tratamiento
+         ]);
     }
 
     /**
@@ -27,8 +44,12 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        $datos_paciente['pacientes'] = Paciente::all();
-        return view('cuenta.create',$datos_paciente);
+        $datos_paciente = Paciente::all();
+        $datos_tratamiento = Tratamiento::all();
+        return view('Cuenta.create',[
+            'pacientes'  => $datos_paciente,
+            'tratamientos' => $datos_tratamiento
+         ]);
     }
 
     /**
