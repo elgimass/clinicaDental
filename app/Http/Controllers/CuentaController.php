@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cuenta;
 use App\Models\Paciente;
 use App\Models\Tratamiento;
+use App\Models\cuentaTotal;
+use CuentaTotal as GlobalCuentaTotal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -22,19 +24,19 @@ class CuentaController extends Controller
         $texto = trim($request->get('texto'));
         $cuentas = DB::table('cuentas')
             ->join('pacientes', 'cuentas.paciente_id', '=', 'pacientes.id')
-              ->select('cuentas.*','pacientes.nombre')
-              ->where('cuentas.fecha','LIKE','%'.$texto.'%')
-              ->orWhere('cuentas.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->orderBy('fecha','desc')
-              ->paginate(7);
+            ->select('cuentas.*','pacientes.nombre')
+            ->where('cuentas.fecha','LIKE','%'.$texto.'%')
+            ->orWhere('cuentas.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->orderBy('paciente_id','desc')
+            ->paginate(7);
 
 
 
         return view('cuenta.index',compact('cuentas','texto'),[
             'pacientes'  => $datos_paciente,
             'tratamientos' => $datos_tratamiento
-         ]);
+        ]);
     }
 
     /**
@@ -49,7 +51,7 @@ class CuentaController extends Controller
         return view('Cuenta.create',[
             'pacientes'  => $datos_paciente,
             'tratamientos' => $datos_tratamiento
-         ]);
+        ]);
     }
 
     /**
@@ -61,9 +63,75 @@ class CuentaController extends Controller
     public function store(Request $request)
     {
         $datoscuenta = request()->except('_token');
-        Cuenta::insert($datoscuenta);
-        return redirect('cuenta');
+        // $datosabono = request()->except('paciente_id','tratamiento_id','fecha','pieza','abonos','_token');
+        // $datoscargo = request()->except('paciente_id','tratamiento_id','fecha','pieza','cargos','_token');
+
+
+        // $idDatosCuenta = number_format($datoscuenta['paciente_id']);
+
+        // $datosCuentaTotal = CuentaTotal::all();
+        // $datosCuentaTotal = CuentaTotal::all();
+
+
+
+
+        $datoscuentatotal = DB::table('cuenta_totals')
+        ->where('cuenta_totals.paciente_id', '=', $datoscuenta['paciente_id'])
+        ->select('cuenta_totals.*') -> get();
+
+
+
+
+
+        if(sizeof($datoscuentatotal) !== 0){
+
+            $calcularTotalCargos = $datoscuenta['cargos'] + $datoscuentatotal[0] -> totalCargos;
+
+
+
+            $calcularTotalAbonos = $datoscuenta['abonos'] + $datoscuentatotal[0] -> totalAbonos;
+
+            $totalDeuda = $calcularTotalCargos - $calcularTotalAbonos;
+
+            $data = [
+                'paciente_id' => $datoscuenta['paciente_id'],
+                'totalCargos' => $calcularTotalCargos,
+                'totalAbonos' => $calcularTotalAbonos,
+                'deuda' => $totalDeuda
+            ];
+
+            Cuenta::insert($datoscuenta);
+
+            cuentaTotal::where('paciente_id','=', $datoscuenta['paciente_id'])->update($data);
+
+
+
+            return redirect('cuenta');
+
+        }else {
+
+            $paciente = $datoscuenta['paciente_id'];
+            $cargo = $datoscuenta['cargos'];
+            $abono = $datoscuenta['abonos'];
+            $deuda = $cargo - $abono;
+
+            $data = [
+                    'paciente_id' => $paciente,
+                    'totalCargos' => $cargo,
+                    'totalAbonos' => $abono,
+                    'deuda' => $deuda
+                ];
+
+                Cuenta::insert($datoscuenta);
+
+                cuentaTotal::insert($data);
+
+                return redirect('cuenta');
+        }
+
+
     }
+
 
     /**
      * Display the specified resource.

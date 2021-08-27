@@ -9,6 +9,7 @@ use App\Http\Controllers\AlergiaPacienteController;
 use App\Http\Controllers\Dashboardcontroller;
 use App\Http\Controllers\Historialcontroller;
 use App\Http\Controllers\Satisfaccioncontroller;
+use App\Http\Controllers\CuentaTotalController ;
 
 
 
@@ -39,6 +40,7 @@ Route::resource('alergia',AlergiaPacienteController::class)->middleware('auth');
 Route::resource('dashboard',DashboardController::class)->middleware('auth');
 Route::resource('historial',HistorialController::class)->middleware('auth');
 Route::resource('satisfaccion',SatisfaccionController::class)->middleware('auth');
+Route::resource('cuentaTotal',CuentaTotalController::class)->middleware('auth');
 Route::get('historial/{id}',  [HistorialController::class, 'historial'])->middleware('auth');
 
 Auth::routes();

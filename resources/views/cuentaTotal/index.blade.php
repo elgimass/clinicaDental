@@ -1,5 +1,4 @@
-
-  @extends('adminlte::page')
+@extends('adminlte::page')
 
 @section('title', 'Clinica Dental')
 
@@ -8,12 +7,11 @@
 @stop
 
 @section('content')
-<a href="{{ url('cuenta/create') }}" class="btn btn-success"> Registrar cobro</a>
 <br>
 <br>
 <div class ="row float-end">
 <div class = "col-sm-12">
-<form action = "{{route('cuenta.index')}}" method="get">
+<form action = "{{route('cuentaTotal.index')}}" method="get">
                      <div class="form-row">
                      <div class="col-sm-8 my-1">
     <input type="text" class="form-control" name="texto" value ="{{$texto}}">
@@ -34,37 +32,30 @@
       <tr>
         <th scope="col">Código</th>
         <th scope="col">Paciente</th>
-        <th scope="col">Tratamiento</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Pieza</th>
-        <th scope="col">Cargos</th>
-        <th scope="col">Abonos</th>
+        <th scope="col">Cargos Totales</th>
+        <th scope="col">Abonos Totales</th>
+        <th scope="col">Deuda Total</th>
 
       </tr>
     </thead>
     <tbody>
-    @foreach ( $cuentas as $cuenta )
+    @foreach ( $cuentas as $cuentats )
             <tr>
-                <th>{{$cuenta->id}}</th>
+                <th>{{$cuentats->id}}</th>
 
 
           @foreach ($pacientes as $paciente  )
-            @if ($cuenta->paciente_id == $paciente->id)
+            @if ($cuentats->paciente_id == $paciente->id)
                  <th>{{$paciente->nombre}}</th>
              @endif
           @endforeach
 
-          @foreach ($tratamientos as $tratamiento  )
-          @if ($cuenta->tratamiento_id == $tratamiento->id)
-               <th>{{$tratamiento->nombre}}</th>
-           @endif
-        @endforeach
 
 
-                <th>{{$cuenta->fecha}}</th>
-                <th>{{$cuenta->pieza}}</th>
-                <th>Q {{number_format($cuenta->cargos, 2)}}</th>
-                <th>Q {{number_format($cuenta->abonos, 2)}}</th>
+
+                <th>Q {{number_format($cuentats->totalCargos, 2)}}</th>
+                <th>Q {{number_format($cuentats->totalAbonos, 2)}}</th>
+                <th>Q {{number_format($cuentats->deuda, 2)}}</th>
                 <th>
 
 

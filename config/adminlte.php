@@ -293,6 +293,11 @@ return [
                     'url'  => 'cuenta ',
                     'topnav' =>true,
                 ],
+                [
+                    'text' => 'Cobros y Cargos',
+                    'url'  => 'cuentaTotal',
+                    'topnav' =>true,
+                ],
             ],
         ],
         ['header' => 'Ayuda'],

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCuentasTable extends Migration
+class Cita extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,24 @@ class CreateCuentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuentas', function (Blueprint $table) {
+        Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('paciente_id');
-            $table->date('fecha');
+            $table->unsignedInteger('tratamiento_id');
+            $table->string('formaPago');
             $table->string('pieza');
-            $table->string('tratamiento');
-            $table->integer('cargos');
-            $table->integer('abonos');
+            $table->date('fecha');
+            $table->time('hora');
             $table->timestamps();
 
             $table->foreign('paciente_id')
             ->references('id')->on('pacientes')
             ->onDelete('cascade');
+
+            $table->foreign('tratamiento_id')
+            ->references('id')->on('tratamientos')
+            ->onDelete('cascade');
+
         });
     }
 
@@ -36,6 +41,6 @@ class CreateCuentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuentas');
+        Schema::dropIfExists('citas');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSatisfaccionsTable extends Migration
+class Satisfaccion extends Migration
 {
     /**
      * Run the migrations.
@@ -16,15 +16,14 @@ class CreateSatisfaccionsTable extends Migration
         Schema::create('satisfaccions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('paciente_id');
-             $table->integer('tiempo');
-             $table->integer('servicio');
-             $table->integer('recomendacion');
-             $table->timestamps();
+            $table->integer('tiempo');
+            $table->integer('servicio');
+            $table->integer('recomendacion');
+            $table->timestamps();
 
-             $table->foreign('paciente_id')
-             ->references('id')->on('pacientes')
-             ->onDelete('cascade');
-
+            $table->foreign('paciente_id')
+            ->references('id')->on('pacientes')
+            ->onDelete('cascade');
 
         });
     }
