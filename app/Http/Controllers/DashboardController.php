@@ -25,12 +25,14 @@ class DashboardController extends Controller
         ->groupBy('citas.tratamiento_id')
         ->get();
 
+
+
         $datos = array();
         foreach ($row as $key => $value) {
-             $datos[] = $value -> count;
+            $datos[] = $value -> count;
         }
 
-        // dd($datos);
+        //dd($datos);
         // dd($row);
         $datos_citas['citas'] = Cita::all();
         return view('Dashboard.index', compact('row'));

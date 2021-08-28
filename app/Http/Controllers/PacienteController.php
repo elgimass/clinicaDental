@@ -18,11 +18,11 @@ class PacienteController extends Controller
     {
         $texto = trim($request->get('texto'));
         $pacientes = DB::table('pacientes')
-              ->select('id','nombre','edad','direccion','telefono','ocupacion','referido')
-              ->where('nombre','LIKE','%'.$texto.'%')
-              ->orWhere('id','LIKE','%'.$texto.'%')
-              ->orderBy('nombre','desc')
-              ->paginate(7);
+                ->select('id','nombre','edad','direccion','telefono','ocupacion','referido')
+                ->where('nombre','LIKE','%'.$texto.'%')
+                ->orWhere('id','LIKE','%'.$texto.'%')
+                ->orderBy('nombre','desc')
+                ->paginate(7);
 
         return view('paciente.index',compact('pacientes','texto'));
     }

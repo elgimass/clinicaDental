@@ -294,7 +294,7 @@ return [
                     'topnav' =>true,
                 ],
                 [
-                    'text' => 'Cobros y Cargos',
+                    'text' => 'Saldos Totales',
                     'url'  => 'cuentaTotal',
                     'topnav' =>true,
                 ],
