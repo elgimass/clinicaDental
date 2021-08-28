@@ -6,8 +6,8 @@ use App\Http\Controllers\CitaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\AlergiaPacienteController;
-use App\Http\Controllers\Dashboardcontroller;
-use App\Http\Controllers\Historialcontroller;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\Satisfaccioncontroller;
 use App\Http\Controllers\CuentaTotalController ;
 
