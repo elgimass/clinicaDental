@@ -24,12 +24,12 @@ class CitaController extends Controller
         $texto = trim($request->get('texto'));
         $citas = DB::table('citas')
             ->join('pacientes', 'citas.paciente_id', '=', 'pacientes.id')
-              ->select('citas.*','pacientes.nombre')
-              ->where('citas.fecha','LIKE','%'.$texto.'%')
-              ->orWhere('citas.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->orderBy('fecha','desc')
-              ->paginate(7);
+            ->select('citas.*','pacientes.nombre')
+            ->where('citas.fecha','LIKE','%'.$texto.'%')
+            ->orWhere('citas.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->orderBy('fecha','desc')
+            ->paginate(7);
 
 
 
@@ -37,7 +37,7 @@ class CitaController extends Controller
         return view('cita.index',compact('citas','texto'),[
             'pacientes'  => $datos_paciente,
             'tratamientos' => $datos_tratamiento
-         ]);
+        ]);
 
     }
 
@@ -53,7 +53,7 @@ class CitaController extends Controller
         return view('Cita.create',[
             'pacientes'  => $datos_paciente,
             'tratamientos' => $datos_tratamiento
-         ]);
+        ]);
     }
 
     /**
