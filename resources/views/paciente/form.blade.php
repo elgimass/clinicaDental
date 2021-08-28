@@ -11,7 +11,7 @@
             </div>
             <br>
             <div class="input-group">
-                 <input class="input-group" type="number" name="edad" value="{{isset ($paciente->edad)?$paciente->edad:''}}" id="edad" placeholder="Ingresar Edad">
+                <input class="input-group" type="number" name="edad" value="{{isset ($paciente->edad)?$paciente->edad:''}}" id="edad" placeholder="Ingresar Edad">
             </div>
             <br>
             <div class="input-group">

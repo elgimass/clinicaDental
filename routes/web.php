@@ -8,7 +8,7 @@ use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\AlergiaPacienteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistorialController;
-use App\Http\Controllers\Satisfaccioncontroller;
+use App\Http\Controllers\SatisfaccionController;
 use App\Http\Controllers\CuentaTotalController ;
 
 
