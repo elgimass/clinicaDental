@@ -272,7 +272,7 @@ return [
                     ],
 
                     [
-                        'text' => 'Alergias de pacientes',
+                        'text' => 'Estado Previo de Pacientes',
                         'url'  => 'alergia',
                         'topnav' =>true,
                     ],
