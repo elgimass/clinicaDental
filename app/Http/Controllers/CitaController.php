@@ -48,12 +48,9 @@ class CitaController extends Controller
      */
     public function create()
     {
-        $datos_paciente = Paciente::all();
+        $datos_paciente = Paciente::all('pacientes');
         $datos_tratamiento = Tratamiento::all();
-        return view('Cita.create',[
-            'pacientes'  => $datos_paciente,
-            'tratamientos' => $datos_tratamiento
-        ]);
+        return view('Cita.create',$datos_paciente);
     }
 
     /**
