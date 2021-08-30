@@ -52,7 +52,7 @@ class CitaController extends Controller
         $datos_tratamiento = Tratamiento::all();
         return view('Cita.create',[
             'pacientes'  => $datos_paciente,
-            'tratamientos' => $datos_tratamiento
+            //'tratamientos' => $datos_tratamiento
         ]);
     }
 
