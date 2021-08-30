@@ -36,7 +36,7 @@
         <th scope="col">Paciente</th>
         <th scope="col">Tratamiento</th>
         <th scope="col">Fecha</th>
-        <th scope="col">Pieza</th>
+        <th scope="col">Número de Pieza</th>
         <th scope="col">Cargos</th>
         <th scope="col">Abonos</th>
 

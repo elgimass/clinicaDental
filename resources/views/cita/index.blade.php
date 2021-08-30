@@ -35,7 +35,7 @@
         <th scope="col">Paciente</th>
         <th scope="col">Tratamiento</th>
         <th scope="col">Forma de pago</th>
-        <th scope="col">Pieza</th>
+        <th scope="col">Número de Pieza</th>
         <th scope="col">Fecha</th>
         <th scope="col">Hora</th>
         <th scope="col">Acciones</th>
