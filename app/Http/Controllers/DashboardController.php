@@ -21,7 +21,8 @@ class DashboardController extends Controller
 
         $row = DB::table('citas')
         ->join('tratamientos','citas.tratamiento_id','=','tratamientos.id')
-        ->select('citas.tratamiento_id','tratamientos.nombre as tratamiento',DB::raw("count(tratamientos.nombre) as count"));
+        ->select('citas.tratamiento_id','tratamientos.nombre as tratamiento',DB::raw("count(tratamientos.nombre) as count"))
+        ->get();
 
 
 
