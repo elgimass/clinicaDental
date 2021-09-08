@@ -49,7 +49,7 @@ class CuentaController extends Controller
 
         $datos_paciente = Paciente::all();
         $datos_tratamiento = Tratamiento::all();
-        return view('Cuenta.create',[
+        return view('cuenta.create',[
             'pacientes'  => $datos_paciente,
             'tratamientos' => $datos_tratamiento
         ]);
