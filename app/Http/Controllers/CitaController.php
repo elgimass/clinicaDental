@@ -50,7 +50,7 @@ class CitaController extends Controller
     {
         $datos_paciente = Paciente::all();
         $datos_tratamiento = Tratamiento::all();
-        return view('Cita.create',compact('datos_paciente','datos_tratamiento'));
+        return view('cita.create',compact('datos_paciente','datos_tratamiento'));
     }
 
     /**
