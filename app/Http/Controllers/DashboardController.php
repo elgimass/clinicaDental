@@ -26,15 +26,17 @@ class DashboardController extends Controller
 
 
 
+        dd($row);
+
         $datos = array();
         foreach ($row as $key => $value) {
             $datos[] = $value -> count;
         }
 
         //dd($datos);
-        // dd($row);
-        $datos_citas['citas'] = Cita::all();
-        return view('Dashboard.index', compact('row'));
+
+        //$datos_citas['citas'] = Cita::all();
+        //return view('Dashboard.index', compact('row'));
     }
 
     /**
