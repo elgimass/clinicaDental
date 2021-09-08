@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
 
 
-        dd($row);
+
 
         $datos = array();
         foreach ($row as $key => $value) {
@@ -36,8 +36,8 @@ class DashboardController extends Controller
 
         //dd($datos);
 
-        //$datos_citas['citas'] = Cita::all();
-        //return view('Dashboard.index', compact('row'));
+        $datos_citas['citas'] = Cita::all();
+        return view('Dashboard.index', compact('row'));
     }
 
     /**
