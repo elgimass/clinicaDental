@@ -36,11 +36,11 @@
         </div>
          <br>
          <div class="input-group">
-            <input class="input-group" type="text" name="cargos" value="{{isset ($cuentas[0]->cargos)?$cuentas[0]->cargos:''}}" id="pieza" placeholder="Ingresar Cargo">
+            <input class="input-group" type="number"  name="cargos" value="{{isset ($cuentas[0]->cargos)?$cuentas[0]->cargos:''}}" id="pieza" placeholder="Ingresar Cargo">
         </div>
         <br>
         <div class="input-group">
-                <input class="input-group" type="text" name="abonos" value="{{isset ($cuentas[0]->abonos)?$cuentas[0]->abonos:''}}" id="pieza" placeholder="Ingresar abono">
+                <input class="input-group" type= "number" name="abonos" value="{{isset ($cuentas[0]->abonos)?$cuentas[0]->abonos:''}}" id="pieza" placeholder="Ingresar abono">
         </div>
         <br>
 
@@ -51,6 +51,6 @@
     <br>
     <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block">
-       Guardar datos</button>
-   </div>
+        Guardar datos</button>
+    </div>
     <br>
