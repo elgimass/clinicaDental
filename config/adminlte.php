@@ -240,7 +240,7 @@ return [
             'label_color' => 'success',
         ],
         ['header' => 'TAREAS'],
-        [
+    /* [
             'text' => 'profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
@@ -249,7 +249,7 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ],*/
         [
             'text'    => 'Registros',
             'icon'    => 'fas fa-fw fa-share',
