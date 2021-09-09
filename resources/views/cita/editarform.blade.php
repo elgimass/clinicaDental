@@ -71,7 +71,6 @@
     <option value="31">31</option>
     <option value="32">32</option>
               </select>
-            <input class="input-group" type="text" name="pieza" value="{{isset ($citas[0]->pieza)?$citas[0]->pieza:''}}" id="pieza" placeholder="Ingresar Pieza">
             </div>
             <br>
             <div class="input-group">
