@@ -37,7 +37,7 @@
                 <label for="pieza"> Seleccionar el número de pieza a tratar </label>
             <select name="pieza" class="input-group" value="{{isset ($citas[0]->pieza)?$citas[0]->pieza:''}}" id="pieza">
                 select name="" id="" >
-                <option value="{{$citas[0]->estado}}">{{ $citas[0]->estado}}</option>
+                <option value="{{$citas[0]->pieza}}">{{ $citas[0]->pieza}}</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
