@@ -29,7 +29,13 @@
             </div>
             <br>
             <div class="input-group">
-            <input class="input-group" type="text" name="pieza" value="{{isset ($citas[0]->pieza)?$citas[0]->pieza:''}}" id="pieza" placeholder="Ingresar Pieza">
+                <label for="pieza"> Seleccionar la pieza a tratar </label>
+        <select name="pieza" class="input-group" id="pieza">
+            <option value="{{isset ($citas[0]->pieza)?$citas[0]->pieza:''}}">{{ $citas[0]->pieza}}</option>
+            <option value="1" > 1 </option>
+            <option value="2" >2</option>
+          </select>
+
             </div>
             <br>
             <div class="input-group">
