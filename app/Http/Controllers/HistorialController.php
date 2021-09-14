@@ -84,12 +84,12 @@ class HistorialController extends Controller
         $texto = trim($request->get('texto'));
         $historiales = DB::table('historials')
             ->join('pacientes', 'historials.paciente_id', '=', 'pacientes.id')
-              ->select('historials.*','pacientes.nombre')
-              ->where('historials.fecha','LIKE','%'.$texto.'%')
-              ->orWhere('historials.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->orderBy('fecha','asc')
-              ->paginate(7);
+            ->select('historials.*','pacientes.nombre')
+            ->where('historials.fecha','LIKE','%'.$texto.'%')
+            ->orWhere('historials.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->orderBy('fecha','asc')
+            ->paginate(7);
 
         // return $historiales;
         return view('historial.indexHistorial',compact('pacientes','historiales'), [

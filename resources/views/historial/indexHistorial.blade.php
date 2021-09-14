@@ -51,42 +51,42 @@
                         <th>{{$pacientes->nombre}}</th>
 
 
-          @foreach ($tratamientos as $tratamiento)
-          @if ($historial->tratamiento_id == $tratamiento->id)
-               <th>{{$tratamiento->nombre}}</th>
-           @endif
+        @foreach ($tratamientos as $tratamiento)
+        @if ($historial->tratamiento_id == $tratamiento->id)
+            <th>{{$tratamiento->nombre}}</th>
+        @endif
         @endforeach
 
 
 
-              <th>{{$historial->pieza}}</th>
+            <th>{{$historial->pieza}}</th>
 
 
 
 
-              <th>{{$historial->fecha}}</th>
-              <th>{{$historial->estado}}</th>
-              <th>{{$historial->observaciones}}</th>
+            <th>{{$historial->fecha}}</th>
+            <th>{{$historial->estado}}</th>
+            <th>{{$historial->observaciones}}</th>
 
 
-              <th>
+            <th>
 
 
 
 
                 <form action="{{ url('/historial/'.$historial->id) }}" method="post">
-                   @csrf
-                   {{method_field('DELETE')}}
-                   <input type="submit" class="btn btn-danger" onclick ="return confirm('¿Estas seguro de que quieres borrar?')"value="Borrar">
-                   <a href="{{ url('/historial/'.$historial->id.'/edit') }}"  class="btn btn-primary">
-                   Editar
-               </a>
-               </form>
+                @csrf
+                {{method_field('DELETE')}}
+                <input type="submit" class="btn btn-danger" onclick ="return confirm('¿Estas seguro de que quieres borrar?')"value="Borrar">
+                <a href="{{ url('/historial/'.$historial->id.'/edit') }}"  class="btn btn-primary">
+                Editar
+            </a>
+        </form>
 
 
-               </th>
+            </th>
 
-             </tr>
+            </tr>
 
                     @else
 

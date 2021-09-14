@@ -42,10 +42,11 @@ Route::resource('historial',HistorialController::class)->middleware('auth');
 Route::resource('satisfaccion',SatisfaccionController::class)->middleware('auth');
 Route::resource('cuentaTotal',CuentaTotalController::class)->middleware('auth');
 Route::get('historial/{id}',  [HistorialController::class, 'historial'])->middleware('auth');
+Route::get('alergia/{id}',  [AlergiaPacienteController::class, 'alergia'])->middleware('auth');
 
 Auth::routes(['register'=>false,'reset'=>false]);
 
-//Route::resource(['register'=>false,'reset'=>false]);
+
 
 Route::get('home',[HomeController::class, 'index'])->middleware('auth');
 

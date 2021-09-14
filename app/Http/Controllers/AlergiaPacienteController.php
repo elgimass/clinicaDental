@@ -24,19 +24,19 @@ class AlergiaPacienteController extends Controller
         $alergia_pacientes = DB::table('alergia_pacientes')
             ->join('pacientes', 'alergia_pacientes.paciente_id', '=', 'pacientes.id')
             ->join('alergias', 'alergia_pacientes.alergia_id', '=', 'alergias.id')
-              ->select('alergia_pacientes.*','pacientes.nombre')
-              ->select('alergia_pacientes.*','alergias.nombre')
-              ->orWhere('alergia_pacientes.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->orWhere('alergias.nombre','LIKE','%'.$texto.'%')
-              ->orderBy('pacientes.nombre','asc')
-              ->paginate(7);
+            ->select('alergia_pacientes.*','pacientes.nombre')
+            ->select('alergia_pacientes.*','alergias.nombre')
+            ->orWhere('alergia_pacientes.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->orWhere('alergias.nombre','LIKE','%'.$texto.'%')
+            ->orderBy('pacientes.nombre','asc')
+            ->paginate(7);
 
 
         return view('AlergiaPaciente.index',compact('alergia_pacientes','texto'),[
             'pacientes'  => $datos_paciente,
             'alergias' => $datos_alergia
-         ]);
+        ]);
     }
 
     /**
@@ -51,7 +51,7 @@ class AlergiaPacienteController extends Controller
         return view('AlergiaPaciente.create',[
             'pacientes'  => $datos_paciente,
             'alergias' => $datos_alergia
-         ]);
+        ]);
     }
 
     /**
@@ -73,10 +73,26 @@ class AlergiaPacienteController extends Controller
      * @param  \App\Models\AlergiaPaciente  $alergiaPaciente
      * @return \Illuminate\Http\Response
      */
-    public function show(AlergiaPaciente $alergiaPaciente)
+    public function show($id,  Request $request)
     {
-        //
+        $pacientes=Paciente::findOrFail($id);
+        $datos_alergia = Alergia::all();
+
+        $texto = trim($request->get('texto'));
+        $alergia_pacientes = DB::table('alergia_pacientes')
+            ->join('pacientes', 'alergia_pacientes.paciente_id', '=', 'pacientes.id')
+            ->select('alergia_pacientes.*','pacientes.nombre')
+            ->orWhere('alergia_pacientes.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->paginate(7);
+
+
+        return view('AlergiaPaciente.alergiaIndex',compact('pacientes','alergia_pacientes'), [
+            'texto' => $texto,
+            'alergias' => $datos_alergia
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -92,7 +108,7 @@ class AlergiaPacienteController extends Controller
         return view('AlergiaPaciente.edit',compact('datosalergia'),[
             'pacientes'  => $datos_paciente,
             'alergias' => $datos_alergia
-         ]);
+        ]);
     }
 
     /**

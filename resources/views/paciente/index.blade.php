@@ -70,6 +70,9 @@
                 <a href="{{ url('/historial/'.$paciente->id) }}" class="btn btn-info">
                     Historial Clinico
                 </a>
+                <a href="{{ url('/alergia/'.$paciente->id) }}" class="btn btn-warning">
+                    Padecimientos Previos
+                </a>
 
 
 
