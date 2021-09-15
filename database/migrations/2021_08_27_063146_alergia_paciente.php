@@ -16,16 +16,17 @@ class AlergiaPaciente extends Migration
         Schema::create('alergia_pacientes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('paciente_id');
-            $table->unsignedInteger('alergia_id');
+            //$table->unsignedInteger('alergia_id');
+            $table->string('alergia');
             $table->timestamps();
 
             $table->foreign('paciente_id')
             ->references('id')->on('pacientes')
             ->onDelete('cascade');
 
-            $table->foreign('alergia_id')
+        /* $table->foreign('alergia_id')
             ->references('id')->on('alergias')
-            ->onDelete('cascade');
+            ->onDelete('cascade');*/
         });
     }
 

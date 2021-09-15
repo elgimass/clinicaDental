@@ -23,12 +23,9 @@ class AlergiaPacienteController extends Controller
         $texto = trim($request->get('texto'));
         $alergia_pacientes = DB::table('alergia_pacientes')
             ->join('pacientes', 'alergia_pacientes.paciente_id', '=', 'pacientes.id')
-            ->join('alergias', 'alergia_pacientes.alergia_id', '=', 'alergias.id')
             ->select('alergia_pacientes.*','pacientes.nombre')
-            ->select('alergia_pacientes.*','alergias.nombre')
             ->orWhere('alergia_pacientes.id','LIKE','%'.$texto.'%')
             ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-            ->orWhere('alergias.nombre','LIKE','%'.$texto.'%')
             ->orderBy('pacientes.nombre','asc')
             ->paginate(7);
 

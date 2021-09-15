@@ -17,7 +17,7 @@ class Cita extends Migration
             $table->increments('id');
             $table->unsignedInteger('paciente_id');
             $table->unsignedInteger('tratamiento_id');
-            $table->string('formaPago');
+           // $table->string('formaPago');
             $table->string('pieza');
             $table->date('fecha');
             $table->time('hora');

@@ -23,25 +23,24 @@
   </div>
 </div>
 </div>
-                     </form>
+                    </form>
 
-                     </div>
+                </div>
 
 <div class="table-responsive">
 <table class="table table-borderless table-hover">
     <thead class="thead-dark">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <tr>
+    <tr>
         <th scope="col">Código</th>
         <th scope="col">Paciente</th>
         <th scope="col">Tratamiento</th>
-        <th scope="col">Forma de pago</th>
         <th scope="col">Número de Pieza</th>
         <th scope="col">Fecha</th>
         <th scope="col">Hora</th>
         <th scope="col">Acciones</th>
 
-      </tr>
+    </tr>
     </thead>
     <tbody>
         @foreach ( $citas as $cita )
@@ -49,20 +48,20 @@
                 <th>{{$cita->id}}</th>
 
 
-          @foreach ($pacientes as $paciente  )
+        @foreach ($pacientes as $paciente  )
             @if ($cita->paciente_id == $paciente->id)
-                 <th>{{$paciente->nombre}}</th>
-             @endif
-          @endforeach
+                <th>{{$paciente->nombre}}</th>
+            @endif
+        @endforeach
 
-          @foreach ($tratamientos as $tratamiento  )
+        @foreach ($tratamientos as $tratamiento  )
             @if ($cita->tratamiento_id == $tratamiento->id)
-                 <th>{{$tratamiento->nombre}}</th>
-             @endif
-          @endforeach
+                <th>{{$tratamiento->nombre}}</th>
+            @endif
+        @endforeach
 
 
-                <th>{{$cita->formaPago}}</th>
+
                 <th>{{$cita->pieza}}</th>
 
 

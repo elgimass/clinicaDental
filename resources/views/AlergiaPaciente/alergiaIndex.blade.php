@@ -36,7 +36,7 @@
     <tr>
         <th scope="col">Código</th>
         <th scope="col">Paciente</th>
-        <th scope="col">Alergia</th>
+        <th scope="col">Padecimiento</th>
         <th scope="col">Acciones</th>
 
     </tr>
@@ -53,11 +53,7 @@
                         <th>{{$pacientes->nombre}}</th>
 
 
-        @foreach ($alergias as $alergia)
-        @if ($alergiap->alergia_id == $alergia->id)
-        <th>{{$alergia->nombre}}</th>
-        @endif
-        @endforeach
+                        <th>{{$alergiap->alergia}}</th>
 
 
         <th>

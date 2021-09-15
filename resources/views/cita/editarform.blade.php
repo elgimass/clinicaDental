@@ -30,10 +30,6 @@
             </div>
             <br>
             <div class="input-group">
-            <input class="input-group" type="text" name="formaPago" value="{{isset ($citas[0]->formaPago)?$citas[0]->formaPago:''}}" id="formaPago" placeholder="Ingresar Forma de Pago">
-            </div>
-            <br>
-            <div class="input-group">
                 <label for="pieza"> Seleccionar el número de pieza a tratar </label>
             <select name="pieza" class="input-group" value="{{isset ($citas[0]->pieza)?$citas[0]->pieza:''}}" id="pieza">
                 select name="" id="" >
@@ -73,10 +69,12 @@
               </select>
             </div>
             <br>
+            <label for="fecha"> Seleccionar la fecha de la cita </label>
             <div class="input-group">
             <input class="input-group" type="date" name="fecha" value="{{isset ($citas[0]->fecha)?$citas[0]->fecha:''}}" id="fecha"  placeholder="Seleccione la fecha de la cita">
             </div>
             <br>
+            <label for="hora"> Seleccionar el horario de la cita </label>
             <div class="input-group">
             <input class="input-group" type="time" name="hora" value="{{isset ($citas[0]->hora)?$citas[0]->hora:''}}" id="hora" placeholder="Seleccione la hora de la cita">
             </div>

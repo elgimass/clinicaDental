@@ -10,10 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\SatisfaccionController;
 use App\Http\Controllers\CuentaTotalController ;
-
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +41,8 @@ Route::resource('cuentaTotal',CuentaTotalController::class)->middleware('auth');
 Route::get('historial/{id}',  [HistorialController::class, 'historial'])->middleware('auth');
 Route::get('alergia/{id}',  [AlergiaPacienteController::class, 'alergia'])->middleware('auth');
 
-Auth::routes(['register'=>false,'reset'=>false]);
-
+//Auth::routes(['register'=>false,'reset'=>false]);
+Auth::routes();
 
 
 Route::get('home',[HomeController::class, 'index'])->middleware('auth');
