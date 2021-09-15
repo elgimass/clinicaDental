@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cuentaTotal;
 use App\Models\Paciente;
+use App\Models\Tratamiento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -20,16 +21,16 @@ class CuentaTotalController extends Controller
         $texto = trim($request->get('texto'));
         $cuentas = DB::table('cuenta_totals')
             ->join('pacientes', 'cuenta_totals.paciente_id', '=', 'pacientes.id')
-              ->select('cuenta_totals.*','pacientes.nombre')
-              ->Where('cuenta_totals.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->paginate(7);
+            ->select('cuenta_totals.*','pacientes.nombre')
+            ->Where('cuenta_totals.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->paginate(7);
 
 
 
         return view('cuentaTotal.index',compact('cuentas','texto'),[
             'pacientes'  => $datos_paciente,
-         ]);
+        ]);
     }
 
     /**
@@ -48,9 +49,10 @@ class CuentaTotalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id,  Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -59,9 +61,23 @@ class CuentaTotalController extends Controller
      * @param  \App\Models\cuentaTotal  $cuentaTotal
      * @return \Illuminate\Http\Response
      */
-    public function show(cuentaTotal $cuentaTotal)
+    public function show($id,  Request $request)
     {
-        //
+        $pacientes=Paciente::findOrFail($id);
+        $datos_tratamiento = Tratamiento::all();
+
+        $texto = trim($request->get('texto'));
+        $cuentas = DB::table('cuenta_totals')
+            ->join('pacientes', 'cuenta_totals.paciente_id', '=', 'pacientes.id')
+            ->select('cuenta_totals.*','pacientes.nombre')
+            ->orWhere('cuenta_totals.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->paginate(7);
+
+        return view('cuentaTotal.indexcuentaTotal',compact('pacientes','cuentas'), [
+            'texto' => $texto,
+            'tratamientos' => $datos_tratamiento
+        ]);
     }
 
     /**

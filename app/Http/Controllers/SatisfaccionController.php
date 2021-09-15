@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Satisfaccion;
 use App\Models\Paciente;
+use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,17 +23,17 @@ class SatisfaccionController extends Controller
         $texto = trim($request->get('texto'));
         $satisfaccions = DB::table('satisfaccions')
             ->join('pacientes', 'satisfaccions.paciente_id', '=', 'pacientes.id')
-              ->select('satisfaccions.*','pacientes.nombre')
-              ->orWhere('satisfaccions.id','LIKE','%'.$texto.'%')
-              ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
-              ->paginate(7);
+            ->select('satisfaccions.*','pacientes.nombre')
+            ->orWhere('satisfaccions.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->paginate(7);
 
 
 
 
         return view('Satisfaccion.index',compact('satisfaccions','texto'),[
             'pacientes'  => $datos_paciente
-         ]);
+        ]);
     }
 
     /**
@@ -45,7 +46,7 @@ class SatisfaccionController extends Controller
         $datos_paciente = Paciente::all();
         return view('Satisfaccion.create',[
             'pacientes'  => $datos_paciente
-         ]);
+        ]);
     }
 
     /**
@@ -67,9 +68,25 @@ class SatisfaccionController extends Controller
      * @param  \App\Models\Satisfaccion  $satisfaccion
      * @return \Illuminate\Http\Response
      */
-    public function show(Satisfaccion $satisfaccion)
+    public function show($id,  Request $request)
     {
-        //
+        $pacientes=Paciente::findOrFail($id);
+        $datos_tratamiento = Tratamiento::all();
+
+        $texto = trim($request->get('texto'));
+        $satisfaccions = DB::table('satisfaccions')
+            ->join('pacientes', 'satisfaccions.paciente_id', '=', 'pacientes.id')
+            ->select('satisfaccions.*','pacientes.nombre')
+            ->where('satisfaccions.fecha','LIKE','%'.$texto.'%')
+            ->orWhere('satisfaccions.id','LIKE','%'.$texto.'%')
+            ->orWhere('pacientes.nombre','LIKE','%'.$texto.'%')
+            ->paginate(7);
+
+        // return $historiales;
+        return view('Satisfaccion.indexSatisfaccion',compact('pacientes','satisfaccions'), [
+            'texto' => $texto,
+            'tratamientos' => $datos_tratamiento
+        ]);
     }
 
     /**

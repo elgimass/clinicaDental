@@ -64,19 +64,24 @@
 
 
 
+                    <form action="">
                     <a href="{{ url('/paciente/'.$paciente->id.'/edit') }}" class="btn btn-primary">
                     Editar
                 </a>
                 <a href="{{ url('/historial/'.$paciente->id) }}" class="btn btn-info">
                     Historial Clinico
                 </a>
-                <a href="{{ url('/alergia/'.$paciente->id) }}" class="btn btn-warning">
+            </form>
+                <a href="{{ url('/alergia/'.$paciente->id) }}" class="btn btn-warning" style="color:white">
                     Padecimientos Previos
                 </a>
 
-
-
-
+                <a href="{{ url('/cuentaTotal/'.$paciente->id) }}" class="btn" style="background-color:#8E44AD;color:white">
+                    Cobros y Abonos
+                </a>
+                <a href="{{ url('/satisfaccion/'.$paciente->id) }}" class="btn btn-success">
+                    NPS
+                </a>
 
 
                 </th>
@@ -86,9 +91,9 @@
             </div>
 
         @endforeach
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-      <script> src = "https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js" </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script> src = "https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js" </script>
 
     </tbody>
   </table>

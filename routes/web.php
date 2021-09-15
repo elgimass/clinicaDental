@@ -40,6 +40,8 @@ Route::resource('satisfaccion',SatisfaccionController::class)->middleware('auth'
 Route::resource('cuentaTotal',CuentaTotalController::class)->middleware('auth');
 Route::get('historial/{id}',  [HistorialController::class, 'historial'])->middleware('auth');
 Route::get('alergia/{id}',  [AlergiaPacienteController::class, 'alergia'])->middleware('auth');
+Route::get('cuentaTotal/{id}',  [CuentaTotalController::class, 'cuentaTotal'])->middleware('auth');
+Route::get('satisfaccion/{id}',  [SatisfaccionController::class, 'satisfaccion'])->middleware('auth');
 
 //Auth::routes(['register'=>false,'reset'=>false]);
 Auth::routes();

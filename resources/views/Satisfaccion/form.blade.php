@@ -10,9 +10,14 @@
                 @foreach ($pacientes as $paciente)
 
                 <option value="{{isset($paciente["id"])?$paciente["id"]:''}}">{{ $paciente->nombre}}</option>
-                 @endforeach)
+                @endforeach)
         </select>
         </div>
+    </div>
+    <br>
+    <label for="fecha"> Seleccionar la fecha del día de la Encuesta </label>
+    <div class="input-group">
+    <input class="input-group" type="date" name="fecha" value="{{isset ($satisfaccions[0]->fecha)?$satisfaccions[0]->fecha:''}}" id="fecha"  placeholder="Seleccione la fecha de la cita">
     </div>
     <br>
     <div class="card card-gray"  >

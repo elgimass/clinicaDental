@@ -36,6 +36,7 @@
       <tr>
         <th scope="col">Código</th>
         <th scope="col">Paciente</th>
+        <th scope="col">Fecha</th>
         <th scope="col">Satisfaccion del tiempo de asignacion de cita</th>
         <th scope="col">Satisfaccion del servicio brindado</th>
         <th scope="col">Probabilidad de recomendacion del servicio</th>
@@ -56,6 +57,7 @@
           @endforeach
 
 
+                <th>{{$satisaccion->fecha}}</th>
                 <th>{{$satisaccion->tiempo}}</th>
                 <th>{{$satisaccion->servicio}}</th>
                 <th>{{$satisaccion->recomendacion}}</th>
