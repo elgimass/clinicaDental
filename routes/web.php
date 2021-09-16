@@ -43,8 +43,8 @@ Route::get('alergia/{id}',  [AlergiaPacienteController::class, 'alergia'])->midd
 Route::get('cuentaTotal/{id}',  [CuentaTotalController::class, 'cuentaTotal'])->middleware('auth');
 Route::get('satisfaccion/{id}',  [SatisfaccionController::class, 'satisfaccion'])->middleware('auth');
 
-Auth::routes(['register'=>false,'reset'=>false]);
-//Auth::routes();
+//Auth::routes(['register'=>false,'reset'=>false]);
+Auth::routes();
 
 
 Route::get('home',[HomeController::class, 'index'])->middleware('auth');
