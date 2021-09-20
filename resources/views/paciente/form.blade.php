@@ -32,10 +32,16 @@
         </div>
   </div>
 </div>
-
+<input type="hidden" name="tiempoInicio" id="horaActual" >
     <br>
     <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block">
+    <button id="btnGuardarPaciente" type="submit" class="btn btn-primary btn-block">
        Guardar datos</button>
    </div>
     <br>
+
+@section('js')
+    <script src="{{asset('js/paciente.js')}}"></script>
+@stop
+
+

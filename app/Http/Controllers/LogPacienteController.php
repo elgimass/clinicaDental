@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dashboard;
-use App\Models\Paciente;
-use App\Models\Tratamiento;
-use App\Models\Satisfaccion;
-use App\Models\Cita;
+use App\Models\logPaciente;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class LogPacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,25 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-
-        $row = DB::table('citas')
-        ->join('tratamientos','citas.tratamiento_id','=','tratamientos.id')
-        ->select('citas.tratamiento_id','tratamientos.nombre as tratamiento',DB::raw("count(tratamientos.nombre) as count"))
-        ->groupBy('citas.tratamiento_id')
-        ->get();
-
-
-
-        $datos = array();
-        foreach ($row as $key => $value) {
-            $datos[] = $value -> count;
-        }
-
-        //dd($datos);
-
-        $datos_citas['citas'] = Cita::all();
-        return view('Dashboard.index', compact('row'));
+        //
     }
 
     /**
@@ -58,16 +35,17 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosPaciente = request()->except('_token');
+        dd($datosPaciente);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  \App\Models\logPaciente  $logPaciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Dashboard $dashboard)
+    public function show(logPaciente $logPaciente)
     {
         //
     }
@@ -75,10 +53,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  \App\Models\logPaciente  $logPaciente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dashboard $dashboard)
+    public function edit(logPaciente $logPaciente)
     {
         //
     }
@@ -87,10 +65,10 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  \App\Models\logPaciente  $logPaciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dashboard $dashboard)
+    public function update(Request $request, logPaciente $logPaciente)
     {
         //
     }
@@ -98,10 +76,10 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  \App\Models\logPaciente  $logPaciente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dashboard $dashboard)
+    public function destroy(logPaciente $logPaciente)
     {
         //
     }

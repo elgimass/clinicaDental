@@ -24,12 +24,10 @@ var dataTratamientosMasUsados = [
 
 
 
-
-
-
 window.onload = function() {
 
-var chart = new CanvasJS.Chart("chartContainer", {
+//grafica de pastel de tratamientos mas usados
+    var charts = new CanvasJS.Chart("chartContainer", {
 	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	exportEnabled: true,
 	animationEnabled: true,
@@ -47,10 +45,27 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		dataPoints: dataTratamientosMasUsados
         	}]
 });
-chart.render();
+charts.render();
+
+/*
+//grafica de barras
+var chart = new CanvasJS.Chart("chartContainers", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "NPS"
+	},
+
+
+	data: [{
+		type: "column",
+		yValueFormatString: "#,##0.0#\"%\"",
+		dataPoints: dataTratamientosMasUsados
+	}]
+});
+chart.render();*/
 
 }
-
 
 
 
@@ -59,8 +74,12 @@ chart.render();
 </head>
 <body>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<br>
+<br>
+<br>
+<br>
+<div id="chartContainers" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 </body>
 </html>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use App\Models\Historial;
+use App\Models\logPaciente;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,8 +47,39 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $datosPaciente = request()->except('_token');
+        $datosPaciente = request()->except('_token', 'tiempoInicio');
+
+
+        $dataCurrentHour = request()->except('_token', 'nombre', 'edad', 'direccion', 'telefono', 'ocupacion', 'referido');
+
+        logPaciente::insert($dataCurrentHour);
+
+        $tablaLogPacienteIdHoraInicio = DB::table('log_pacientes')
+                                        ->max('id');
+
+        $tablaLogPacienteHoraInicio = DB::table('log_pacientes')
+        ->select('tiempoInicio')
+        ->where('id', '=', $tablaLogPacienteIdHoraInicio)->get();
+
+
+        date_default_timezone_set('America/Guatemala');
+        $tiempoFinal = date('H:i:s');
+
+        $start = new DateTime($tablaLogPacienteHoraInicio[0]->tiempoInicio);
+        $end = new DateTime($tiempoFinal);
+
+        $tiempoResultado = $end -> diff($start)->format("%H:%I:%S");
+
+        $datosLogPaciente = array(
+            'tiempoInicio' => $tablaLogPacienteHoraInicio[0]->tiempoInicio ,
+            'tiempoFinal' => $tiempoFinal,
+            'tiempoResultado' => $tiempoResultado
+        );
+
+        logPaciente::where('id','=', $tablaLogPacienteIdHoraInicio)->update($datosLogPaciente);
+
         Paciente::insert($datosPaciente);
+
 
         return redirect('paciente');
     }
