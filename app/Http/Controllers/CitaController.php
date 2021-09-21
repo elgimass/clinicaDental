@@ -75,29 +75,29 @@ class CitaController extends Controller
 
     logPaciente::insert($dataCurrentHour);
 
-    $tablaLogPacienteIdHoraInicio = DB::table('log_pacientes')
+    $tablaLogCitaIdHoraInicio = DB::table('log_pacientes')
                                     ->max('id');
 
-    $tablaLogPacienteHoraInicio = DB::table('log_pacientes')
+    $tablaLogCitaHoraInicio = DB::table('log_pacientes')
     ->select('tiempoInicio')
-    ->where('id', '=', $tablaLogPacienteIdHoraInicio)->get();
+    ->where('id', '=', $tablaLogCitaIdHoraInicio)->get();
 
 
     date_default_timezone_set('America/Guatemala');
     $tiempoFinal = date('H:i:s');
 
-    $start = new DateTime($tablaLogPacienteHoraInicio[0]->tiempoInicio);
+    $start = new DateTime($tablaLogCitaHoraInicio[0]->tiempoInicio);
     $end = new DateTime($tiempoFinal);
 
     $tiempoResultado = $end -> diff($start)->format("%H:%I:%S");
 
-    $datosLogPaciente = array(
-        'tiempoInicio' => $tablaLogPacienteHoraInicio[0]->tiempoInicio ,
+    $datosLogCita = array(
+        'tiempoInicio' => $tablaLogCitaHoraInicio[0]->tiempoInicio ,
         'tiempoFinal' => $tiempoFinal,
         'tiempoResultado' => $tiempoResultado
     );
 
-    logPaciente::where('id','=', $tablaLogPacienteIdHoraInicio)->update($datosLogPaciente);
+    logPaciente::where('id','=', $tablaLogCitaIdHoraInicio)->update($datosLogCita);
 
 
         $datoshistorial = request()->except('hora','formaPago','_token','tiempoInicio');
