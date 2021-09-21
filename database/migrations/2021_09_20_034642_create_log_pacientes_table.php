@@ -16,8 +16,8 @@ class CreateLogPacientesTable extends Migration
         Schema::create('log_pacientes', function (Blueprint $table) {
             $table->increments('id');
             $table->time('tiempoInicio');
-            $table->time('tiempoFinal');
-            $table->time('tiempoResultado');
+            $table->time('tiempoFinal')->nullable();
+            $table->time('tiempoResultado')->nullable();
             $table->timestamps();
         });
     }
