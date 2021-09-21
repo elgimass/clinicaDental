@@ -73,7 +73,7 @@ class CitaController extends Controller
         $dataCurrentHour = request()->except('_token', 'paciente_id', 'tratamiento_id', 'pieza', 'fecha',  'hora');
 
 
-    logPaciente::insert($dataCurrentHour);
+   /* logPaciente::insert($dataCurrentHour);
 
     $tablaLogCitaIdHoraInicio = DB::table('log_pacientes')
                                     ->max('id');
@@ -97,7 +97,7 @@ class CitaController extends Controller
         'tiempoResultado' => $tiempoResultado
     );
 
-    logPaciente::where('id','=', $tablaLogCitaIdHoraInicio)->update($datosLogCita);
+    logPaciente::where('id','=', $tablaLogCitaIdHoraInicio)->update($datosLogCita);*/
 
 
         $datoshistorial = request()->except('hora','formaPago','_token','tiempoInicio');
