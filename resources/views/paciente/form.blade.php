@@ -30,14 +30,14 @@
             <input class="input-group" type="text" name="referido" value="{{isset ($paciente->referido)?$paciente->referido:''}}" id="referido" placeholder="Ingresar Referido">
             </div>
         </div>
-  </div>
 </div>
-<input type="hidden" name="tiempoInicio" id="horaActual" >
+</div>
+<input type="hidden" name="tiempoInicio" id="horaActualCita" >
     <br>
     <div class="form-group">
     <button id="btnGuardarPaciente" type="submit" class="btn btn-primary btn-block">
-       Guardar datos</button>
-   </div>
+    Guardar datos</button>
+</div>
     <br>
 
 @section('js')

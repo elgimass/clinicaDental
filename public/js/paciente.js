@@ -13,5 +13,4 @@ $(document).ready(function(){
         console.log('hora actual', datoFechaActual.value);
 
     })
-
 });

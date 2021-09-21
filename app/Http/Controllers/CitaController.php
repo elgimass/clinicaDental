@@ -65,16 +65,18 @@ class CitaController extends Controller
     public function store(Request $request)
     {
 
-        $datoscita = request()->except('_token');
-        Cita::insert($datoscita);
+        $datoscita = request()->except('_token','tiempoInicio');
+        //Cita::insert($datoscita);
+
+        $dataCurrentHour = request()->except('_token', 'paciente_id', 'tratamiento_id', 'pieza', 'fecha',  'hora');
+
+        dd($dataCurrentHour);
 
 
         $datoshistorial = request()->except('hora','formaPago','_token');
 
 
-        Historial::insert($datoshistorial);
-
-
+        //Historial::insert($datoshistorial);
 
 
         return redirect('cita');

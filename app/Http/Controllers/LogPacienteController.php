@@ -35,8 +35,7 @@ class LogPacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $datosPaciente = request()->except('_token');
-        dd($datosPaciente);
+        
     }
 
     /**

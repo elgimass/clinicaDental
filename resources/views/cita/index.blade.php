@@ -104,4 +104,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
+    <script src="{{asset('js/paciente.js')}}"></script>
 @stop

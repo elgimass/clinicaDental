@@ -2,7 +2,7 @@
 @csrf
 <div class="container">
 <div class="card">
-  <div class="card-body">
+    <div class="card-body">
 
     <div class ="form-group">
         <label for="paciente_id"> Seleccion Paciente </label>
@@ -60,7 +60,7 @@
 <option value="30">30</option>
 <option value="31">31</option>
 <option value="32">32</option>
-          </select>
+            </select>
 
             </div>
             <br>
@@ -74,13 +74,17 @@
             <input class="input-group" type="time" name="hora" value="{{isset ($citas[0]->hora)?$citas[0]->hora:''}}" id="hora" placeholder="Seleccione la hora de la cita">
             </div>
         </div>
-  </div>
+    </div>
 </div>
 
-
+<input type="hidden" name="tiempoInicio" id="horaActual" >
 <br>
     <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block">
-       Guardar datos</button>
-   </div>
+        Guardar datos</button>
+    </div>
     <br>
+
+    @section('js')
+    <script src="{{asset('js/paciente.js')}}"></script>
+@stop
