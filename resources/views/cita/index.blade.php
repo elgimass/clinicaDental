@@ -104,5 +104,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
-    <script src="{{asset('js/paciente.js')}}"></script>
+    <script src="{{asset('js/cita.js')}}"></script>
 @stop

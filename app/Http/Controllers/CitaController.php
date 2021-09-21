@@ -6,6 +6,8 @@ use App\Models\Cita;
 use App\Models\Tratamiento;
 use App\Models\Paciente;
 use App\Models\Historial;
+use App\Models\logPaciente;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -66,17 +68,43 @@ class CitaController extends Controller
     {
 
         $datoscita = request()->except('_token','tiempoInicio');
-        //Cita::insert($datoscita);
+
 
         $dataCurrentHour = request()->except('_token', 'paciente_id', 'tratamiento_id', 'pieza', 'fecha',  'hora');
 
-        dd($dataCurrentHour);
+
+    logPaciente::insert($dataCurrentHour);
+
+    $tablaLogPacienteIdHoraInicio = DB::table('log_pacientes')
+                                    ->max('id');
+
+    $tablaLogPacienteHoraInicio = DB::table('log_pacientes')
+    ->select('tiempoInicio')
+    ->where('id', '=', $tablaLogPacienteIdHoraInicio)->get();
 
 
-        $datoshistorial = request()->except('hora','formaPago','_token');
+    date_default_timezone_set('America/Guatemala');
+    $tiempoFinal = date('H:i:s');
+
+    $start = new DateTime($tablaLogPacienteHoraInicio[0]->tiempoInicio);
+    $end = new DateTime($tiempoFinal);
+
+    $tiempoResultado = $end -> diff($start)->format("%H:%I:%S");
+
+    $datosLogPaciente = array(
+        'tiempoInicio' => $tablaLogPacienteHoraInicio[0]->tiempoInicio ,
+        'tiempoFinal' => $tiempoFinal,
+        'tiempoResultado' => $tiempoResultado
+    );
+
+    logPaciente::where('id','=', $tablaLogPacienteIdHoraInicio)->update($datosLogPaciente);
 
 
-        //Historial::insert($datoshistorial);
+        $datoshistorial = request()->except('hora','formaPago','_token','tiempoInicio');
+
+
+        Cita::insert($datoscita);
+        Historial::insert($datoshistorial);
 
 
         return redirect('cita');

@@ -77,14 +77,16 @@
     </div>
 </div>
 
-<input type="hidden" name="tiempoInicio" id="horaActual" >
+<input type="hidden" name="tiempoInicio" id="horaActualCita" >
 <br>
     <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block">
+    <button id="btnGuardarCita" type="submit" class="btn btn-primary btn-block">
         Guardar datos</button>
     </div>
     <br>
 
     @section('js')
-    <script src="{{asset('js/paciente.js')}}"></script>
+    <script src="{{asset('js/cita.js')}}"></script>
 @stop
+
+

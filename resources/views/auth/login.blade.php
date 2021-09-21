@@ -1,3 +1,4 @@
+@csrf
 @extends('layouts.app')
 
 @section('content')

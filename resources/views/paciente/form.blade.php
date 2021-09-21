@@ -32,7 +32,7 @@
         </div>
 </div>
 </div>
-<input type="hidden" name="tiempoInicio" id="horaActualCita" >
+<input type="hidden" name="tiempoInicio" id="horaActual" >
     <br>
     <div class="form-group">
     <button id="btnGuardarPaciente" type="submit" class="btn btn-primary btn-block">

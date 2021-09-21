@@ -52,7 +52,9 @@ class PacienteController extends Controller
 
         $dataCurrentHour = request()->except('_token', 'nombre', 'edad', 'direccion', 'telefono', 'ocupacion', 'referido');
 
-        logPaciente::insert($dataCurrentHour);
+
+
+    logPaciente::insert($dataCurrentHour);
 
         $tablaLogPacienteIdHoraInicio = DB::table('log_pacientes')
                                         ->max('id');
